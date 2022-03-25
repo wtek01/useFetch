@@ -1,20 +1,15 @@
 import React, { useRef, useState, useEffect } from "react";
 
-import refetch from "./useFetch";
+import useFetch from "./useFetch";
 export default function App() {
- 
-
-  const getAllUser = () => {
-   /* const [
-      err,
-      users,
-      loading,
-      refetch
-    ] = useFetch(`https://jsonplaceholder.typicode.com/users`, { auto: true });*/
-  };
-const users;
-  const getOneUser = () => {
-    users = refetch(`https://jsonplaceholder.typicode.com/users/${randomId(1, 10)}`, {
+  const [
+    err,
+    users,
+    loading,
+    refetch
+  ] = useFetch(`https://jsonplaceholder.typicode.com/users`, { auto: true });
+  const getUser = () => {
+    refetch(`https://jsonplaceholder.typicode.com/users/${randomId(1, 10)}`, {
       auto: false
     });
   };
@@ -46,7 +41,7 @@ const users;
 
   return (
     <>
-      <button onClick={getAllUser}>Get all users</button>
+      <button onClick={getUser}>Get one user</button>
       {users && users.length > 0 && (
         <div>
           {users.map((user) => (
@@ -58,7 +53,6 @@ const users;
           ))}
         </div>
       )}
-      <button onClick={getOneUser}>Get one user</button>
       {users && (
         <div>
           {users.id} {":"} {users.name}
